@@ -469,7 +469,6 @@ function showScreen(name) {
    ============================================================ */
 
 function startManche() {
-  state.livesLeft    = MAX_LIVES;
   state.manchePerdue = false;
   state.overlayPhase = 'idle';
 
@@ -793,6 +792,7 @@ function advanceRound() {
 
 function switchTeamWithTransition() {
   state.currentTeamIndex = (state.currentTeamIndex + 1) % teams.length;
+  state.livesLeft = MAX_LIVES; // ✅ Reset vies uniquement au changement d'équipe
   transitionTeamName.textContent  = currentTeam().name;
   overlayTransition.style.display = 'flex';
 }
