@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CHRONO SHOW</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== ÉCRAN D'ACCUEIL ========== -->
+  <div id="screen-intro" class="screen active">
+    <div class="intro-content">
+      <div class="intro-logo">
+        <span class="logo-chrono">CHRONO</span>
+        <span class="logo-show">SHOW</span>
+      </div>
+      <p class="intro-subtitle">Replacez les événements dans l'ordre chronologique</p>
+      <button class="btn-main" id="btn-start">COMMENCER LE JEU</button>
+    </div>
+    <div class="intro-particles" id="intro-particles"></div>
+  </div>
+
+  <!-- ========== ÉCRAN DE JEU PRINCIPAL ========== -->
+  <div id="screen-game" class="screen">
+
+    <!-- En-tête avec scores -->
+    <header class="game-header">
+      <div class="team-score left" id="score-team0">
+        <span class="team-name" id="name-team0">Équipe Rouge</span>
+        <span class="team-points" id="points-team0">0 pt</span>
+      </div>
+
+      <div class="header-center">
+        <div class="game-title">CHRONO SHOW</div>
+        <div class="round-info" id="round-info">Manche 1</div>
+      </div>
+
+      <div class="team-score right" id="score-team1">
+        <span class="team-name" id="name-team1">Équipe Bleue</span>
+        <span class="team-points" id="points-team1">0 pt</span>
+      </div>
+    </header>
+
+    <!-- Barre de statut équipe active -->
+    <div class="status-bar">
+      <div class="active-team-display">
+        <span class="active-label">C'est au tour de</span>
+        <span class="active-team-name" id="active-team-name">Équipe Rouge</span>
+      </div>
+      <div class="lives-display" id="lives-display">
+        <!-- Cœurs générés en JS -->
+      </div>
+    </div>
+
+    <!-- Zone de jeu : les cartes à ordonner -->
+    <main class="game-area">
+      <div class="instructions">
+        Glissez les cartes pour les ordonner du plus <strong>ANCIEN</strong> au plus <strong>RÉCENT</strong> →
+      </div>
+
+      <!-- Conteneur drag & drop -->
+      <div class="cards-container" id="cards-container">
+        <!-- Cartes générées en JS -->
+      </div>
+
+      <!-- Flèche de direction -->
+      <div class="timeline-arrow">
+        <span>PASSÉ</span>
+        <div class="arrow-line"></div>
+        <span>PRÉSENT</span>
+      </div>
+    </main>
+
+    <!-- Bouton valider -->
+    <div class="validate-area">
+      <button class="btn-validate" id="btn-validate">VALIDER</button>
+    </div>
+
+    <!-- ========== OVERLAY : RÉSULTAT DE VALIDATION ========== -->
+    <div class="overlay" id="overlay-result" style="display:none;">
+      <div class="overlay-box" id="overlay-result-box">
+
+        <!-- Phase 1 : résultat (score) -->
+        <div id="phase-result">
+          <div class="overlay-icon" id="result-icon">✓</div>
+          <div class="overlay-title" id="result-title">BIEN JOUÉ !</div>
+          <div class="overlay-message" id="result-message">5 événements bien placés</div>
+          <div class="overlay-sub" id="result-sub"></div>
+        </div>
+
+        <!-- Phase 2 : révélation des dates (cachée au départ) -->
+        <div id="phase-reveal" style="display:none;">
+          <div class="reveal-title">📅 LES DATES</div>
+          <div class="reveal-cards-list" id="reveal-cards-list">
+            <!-- Cartes avec dates générées en JS -->
+          </div>
+        </div>
+
+        <!-- Bouton unique qui change de rôle -->
+        <button class="btn-overlay-continue" id="btn-overlay-continue">
+          VOIR LES DATES
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ========== OVERLAY : TRANSITION D'ÉQUIPE ========== -->
+    <div class="overlay" id="overlay-transition" style="display:none;">
+      <div class="overlay-box overlay-transition-box">
+        <div class="transition-icon">🔄</div>
+        <div class="transition-title">CHANGEMENT D'ÉQUIPE</div>
+        <div class="transition-message" id="transition-message">
+          C'est maintenant au tour de <br/>
+          <strong id="transition-team-name">Équipe Bleue</strong>
+        </div>
+        <button class="btn-main" id="btn-transition-ok">ON EST PRÊTS !</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== ÉCRAN FIN DE JEU ========== -->
+  <div id="screen-end" class="screen">
+    <div class="end-content">
+      <div class="end-trophy">🏆</div>
+      <div class="end-title">FIN DE PARTIE</div>
+      <div class="end-scores" id="end-scores">
+        <!-- Scores générés en JS -->
+      </div>
+      <div class="end-winner" id="end-winner"></div>
+      <button class="btn-main" id="btn-restart">REJOUER</button>
+    </div>
+  </div>
+
+  <!-- ========== PANNEAU ADMIN ========== -->
+  <div id="admin-toggle" title="Admin">⚙️</div>
+  <div id="admin-panel">
+    <div class="admin-title">⚙️ ADMIN</div>
+
+    <button class="btn-admin" id="admin-next-round">Manche suivante</button>
+    <button class="btn-admin" id="admin-reset-lives">Réinitialiser les vies</button>
+    <button class="btn-admin" id="admin-reset-scores">Réinitialiser les scores</button>
+    <button class="btn-admin" id="admin-change-team">Changer d'équipe</button>
+
+    <div class="admin-separator"></div>
+
+    <label class="admin-toggle-label">
+      <input type="checkbox" id="admin-toggle-anim" checked />
+      Animations activées
+    </label>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
